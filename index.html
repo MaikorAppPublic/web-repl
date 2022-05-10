@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html class="fullscreen">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8">
+    <title>Maikor REPL</title>
+    <meta name="author" content="Ray Britton <raybritton@pm.me>">
+    <meta name="theme-color" content="#0033ae">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body class="fullscreen">
+<h1 class="title">Maikor REPL</h1>
+<div class="main_container">
+    <div class="registers_container">
+        <div class="reg_button_row">
+            <button id="reg_show_dechex">Dec/Hex</button>
+            <button id="reg_show_bin">Bin</button>
+        </div>
+        <div class="reg_tab_container">
+            <div class="reg_container" id="reg_dec">
+                <h6 class="reg_title">Decimal</h6>
+                <div class="reg_row">
+                    <span class="reg_label reg_label_byte">AH</span>
+
+                    <span class="reg_label reg_label_byte">BH</span>
+                    <span class="reg_label reg_label_byte">CH</span>
+                    <span class="reg_label reg_label_byte">DH</span>
+
+                </div>
+                <div class="reg_row">
+                    <pre class="byte_reg byte_reg_dec" id="reg_ah_dec"></pre>
+                    <pre class="byte_reg byte_reg_dec" id="reg_bh_dec"></pre>
+                    <pre class="byte_reg byte_reg_dec" id="reg_ch_dec"></pre>
+                    <pre class="byte_reg byte_reg_dec" id="reg_dh_dec"></pre>
+                </div>
+                <div class="reg_row">
+                    <span class="reg_label reg_label_byte">AL</span>
+                    <span class="reg_label reg_label_byte">BL</span>
+                    <span class="reg_label reg_label_byte">CL</span>
+
+                    <span class="reg_label reg_label_byte">DL</span>
+                </div>
+                <div class="reg_row">
+                    <pre class="byte_reg byte_reg_dec" id="reg_al_dec"></pre>
+                    <pre class="byte_reg byte_reg_dec" id="reg_bl_dec"></pre>
+                    <pre class="byte_reg byte_reg_dec" id="reg_cl_dec"></pre>
+                    <pre class="byte_reg byte_reg_dec" id="reg_dl_dec"></pre>
+                </div>
+                <div class="reg_row">
+                    <span class="reg_label">AX</span>
+                    <span class="reg_label">BX</span>
+                    <span class="reg_label">CX</span>
+                    <span class="reg_label">DX</span>
+                </div>
+                <div class="reg_row">
+                    <pre class="word_reg word_reg_dec" id="reg_ax_dec"></pre>
+                    <pre class="word_reg word_reg_dec" id="reg_bx_dec"></pre>
+                    <pre class="word_reg word_reg_dec" id="reg_cx_dec"></pre>
+                    <pre class="word_reg word_reg_dec" id="reg_dx_dec"></pre>
+                </div>
+                <div class="reg_row">
+                    <span class="reg_label reg_label_word">PC</span>
+                    <span class="reg_label reg_label_word">SP</span>
+                    <span class="reg_label reg_label_word">FP</span>
+                    <span class="reg_label reg_label_byte">FLG</span>
+                </div>
+                <div class="reg_row">
+                    <pre class="word_reg word_reg_dec" id="reg_pc_dec"></pre>
+                    <pre class="word_reg word_reg_dec" id="reg_sp_dec"></pre>
+                    <pre class="word_reg word_reg_dec" id="reg_fp_dec"></pre>
+                    <pre class="byte_reg byte_reg_dec" id="reg_flg_dec"></pre>
+                </div>
+            </div>
+            <div class="reg_container" id="reg_hex">
+                <h6 class="reg_title">Hexadecimal</h6>
+                <div class="reg_row">
+                    <span class="reg_label reg_label_byte">AH</span>
+
+                    <span class="reg_label reg_label_byte">BH</span>
+                    <span class="reg_label reg_label_byte">CH</span>
+                    <span class="reg_label reg_label_byte">DH</span>
+
+                </div>
+                <div class="reg_row">
+                    <pre class="byte_reg byte_reg_hex" id="reg_ah_hex"></pre>
+                    <pre class="byte_reg byte_reg_hex" id="reg_bh_hex"></pre>
+                    <pre class="byte_reg byte_reg_hex" id="reg_ch_hex"></pre>
+                    <pre class="byte_reg byte_reg_hex" id="reg_dh_hex"></pre>
+                </div>
+                <div class="reg_row">
+                    <span class="reg_label reg_label_byte">AL</span>
+                    <span class="reg_label reg_label_byte">BL</span>
+                    <span class="reg_label reg_label_byte">CL</span>
+
+                    <span class="reg_label reg_label_byte">DL</span>
+                </div>
+                <div class="reg_row">
+                    <pre class="byte_reg byte_reg_hex" id="reg_al_hex"></pre>
+                    <pre class="byte_reg byte_reg_hex" id="reg_bl_hex"></pre>
+                    <pre class="byte_reg byte_reg_hex" id="reg_cl_hex"></pre>
+                    <pre class="byte_reg byte_reg_hex" id="reg_dl_hex"></pre>
+                </div>
+                <div class="reg_row">
+                    <span class="reg_label">AX</span>
+                    <span class="reg_label">BX</span>
+                    <span class="reg_label">CX</span>
+                    <span class="reg_label">DX</span>
+                </div>
+                <div class="reg_row">
+                    <pre class="word_reg word_reg_hex" id="reg_ax_hex"></pre>
+                    <pre class="word_reg word_reg_hex" id="reg_bx_hex"></pre>
+                    <pre class="word_reg word_reg_hex" id="reg_cx_hex"></pre>
+                    <pre class="word_reg word_reg_hex" id="reg_dx_hex"></pre>
+                </div>
+                <div class="reg_row">
+                    <span class="reg_label reg_label_word">PC</span>
+                    <span class="reg_label reg_label_word">SP</span>
+                    <span class="reg_label reg_label_word">FP</span>
+                    <span class="reg_label reg_label_byte">FLG</span>
+                </div>
+                <div class="reg_row">
+                    <pre class="word_reg word_reg_hex" id="reg_pc_hex"></pre>
+                    <pre class="word_reg word_reg_hex" id="reg_sp_hex"></pre>
+                    <pre class="word_reg word_reg_hex" id="reg_fp_hex"></pre>
+                    <pre class="byte_reg byte_reg_hex" id="reg_flg_hex"></pre>
+                </div>
+            </div>
+            <div class="reg_container hidden" id="reg_bin">
+                <h6 class="reg_title">Binary</h6>
+                <div class="reg_row">
+                    <span class="reg_label_bin reg_label_byte">AH</span>
+                    <span class="reg_label_bin reg_label_byte">BH</span>
+                    <span class="reg_label_bin reg_label_byte">CH</span>
+                </div>
+                <div class="reg_row">
+                    <pre class="byte_reg byte_reg_bin" id="reg_ah_bin"></pre>
+                    <pre class="byte_reg byte_reg_bin" id="reg_bh_bin"></pre>
+                    <pre class="byte_reg byte_reg_bin" id="reg_ch_bin"></pre>
+                </div>
+                <div class="reg_row">
+                    <span class="reg_label_bin reg_label_byte">DH</span>
+                    <span class="reg_label_bin reg_label_byte">AL</span>
+                    <span class="reg_label_bin reg_label_byte">BL</span>
+                </div>
+                <div class="reg_row">
+                    <pre class="byte_reg byte_reg_bin" id="reg_dh_bin"></pre>
+                    <pre class="byte_reg byte_reg_bin" id="reg_al_bin"></pre>
+                    <pre class="byte_reg byte_reg_bin" id="reg_bl_bin"></pre>
+                </div>
+                <div class="reg_row">
+                    <span class="reg_label_bin reg_label_byte">CL</span>
+                    <span class="reg_label_bin reg_label_byte">DL</span>
+                    <span class="reg_label_bin reg_label_byte">FLG</span>
+                </div>
+                <div class="reg_row">
+                    <pre class="byte_reg byte_reg_bin" id="reg_cl_bin"></pre>
+                    <pre class="byte_reg byte_reg_bin" id="reg_dl_bin"></pre>
+                    <pre class="byte_reg byte_reg_bin" id="reg_flg_bin"></pre>
+                </div>
+                <div class="reg_row">
+                    <span class="reg_label">AX</span>
+                    <pre class="word_reg word_reg_bin" id="reg_ax_bin"></pre>
+                </div>
+                <div class="reg_row">
+                    <span class="reg_label">BX</span>
+                    <pre class="word_reg word_reg_bin" id="reg_bx_bin"></pre>
+                </div>
+                <div class="reg_row">
+                    <span class="reg_label">CX</span>
+                    <pre class="word_reg word_reg_bin" id="reg_cx_bin"></pre>
+                </div>
+                <div class="reg_row">
+                    <span class="reg_label">DX</span>
+                    <pre class="word_reg word_reg_bin" id="reg_dx_bin"></pre>
+                </div>
+
+                <div class="reg_row">
+                    <span class="reg_label reg_label_word">PC</span>
+                    <pre class="word_reg word_reg_bin" id="reg_pc_bin"></pre>
+                </div>
+                <div class="reg_row">
+                    <span class="reg_label reg_label_word">SP</span>
+                    <pre class="word_reg word_reg_bin" id="reg_sp_bin"></pre>
+                </div>
+                <div class="reg_row">
+                    <span class="reg_label reg_label_word">FP</span>
+                    <pre class="word_reg word_reg_bin" id="reg_fp_bin"></pre>
+                </div>
+            </div>
+        </div>
+        <div class="reg_container">
+            <h6 class="reg_title">Flags</h6>
+            <div class="flg_row">
+                <label for="flg_carry" class="flg_label">C</label>
+                <input type="checkbox" class="flag" id="flg_carry">
+                <label for="flg_zero" class="flg_label">Z</label>
+                <input type="checkbox" class="flag" id="flg_zero">
+                <label for="flg_signed" class="flg_label">S</label>
+                <input type="checkbox" class="flag" id="flg_signed">
+                <label for="flg_overflow" class="flg_label">O</label>
+                <input type="checkbox" class="flag" id="flg_overflow">
+                <label for="flg_less" class="flg_label">L</label>
+                <input type="checkbox" class="flag" id="flg_less">
+                <label for="flg_greater" class="flg_label">G</label>
+                <input type="checkbox" class="flag" id="flg_greater">
+                <label for="flg_interrupts" class="flg_label">I</label>
+                <input type="checkbox" class="flag" id="flg_interrupts">
+            </div>
+        </div>
+    </div>
+    <div class="input_container">
+        <input id="instruction" value="INC.B AL">
+        <button id="execute">Execute</button>
+    </div>
+    <div class="history_container">
+        <textarea id="history"></textarea>
+    </div>
+
+    <span class="ver_footer">Using <a class="footer_link" target="_blank" href="https://github.com/MaikorAppPublic/vm-interface-wasm">vm-interface-wasm</a> v0.1.1</span>
+</div>
+
+    <script src="utils.js"></script>
+    <script type="module">
+        import init, {get_core, execute_statement} from "./maikor_vm_interface_wasm.js";
+
+        const isMobile = localStorage.mobile || window.navigator.maxTouchPoints > 1;
+
+
+        const history = window.document.getElementById("history");
+        const input = window.document.getElementById("instruction");
+
+        async function run() {
+            await init();
+            updateRegisters(get_core());
+        }
+
+        function executeSingle() {
+            const text = input.value;
+            const oldRegisters = get_core();
+            const error = execute_statement(text);
+            if (error == null) {
+                const newRegisters = get_core();
+                const diff = calcRegDiff(oldRegisters, newRegisters);
+                history.value += text;
+                history.value += "  (";
+                history.value += diff;
+                history.value += ")\n";
+                autoExpand(window.document.getElementById("history"));
+                updateRegisters(get_core());
+                if (!isMobile) {
+                    input.focus();
+                }
+            } else {
+                alert(error);
+            }
+        }
+
+        window.onload = () => {
+            run();
+
+            window.document.getElementById("execute").addEventListener("click", executeSingle);
+            input.addEventListener("keypress", (event) => {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    executeSingle();
+                }
+            });
+
+            const decPanel = window.document.getElementById("reg_dec");
+            const hexPanel = window.document.getElementById("reg_hex");
+            const binPanel = window.document.getElementById("reg_bin");
+            window.document.getElementById("reg_show_dechex").addEventListener("click", () => {
+                decPanel.classList.remove("hidden");
+                hexPanel.classList.remove("hidden");
+                binPanel.classList.add("hidden");
+            });
+            window.document.getElementById("reg_show_bin").addEventListener("click", () => {
+                decPanel.classList.add("hidden");
+                hexPanel.classList.add("hidden");
+                binPanel.classList.remove("hidden");
+            });
+
+            window.document.getElementById("history").addEventListener("input", (event  ) => {
+                autoExpand(event.target);
+            });
+        };
+    </script>
+</body>
+</html>
