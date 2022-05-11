@@ -235,7 +235,7 @@
         }
 
         function executeSingle() {
-            const text = input.value;
+            const text = input.value.trim();
             const oldRegisters = get_core();
             const error = execute_statement(text);
             if (error == null) {

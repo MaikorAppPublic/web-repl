@@ -173,6 +173,7 @@ input[type="checkbox" i].flag {
     margin-left: auto;
     margin-right: auto;
     display: block;
+    font-size: 0.8em;
 }
 
 .ver_footer {
