@@ -144,8 +144,9 @@ img {
 }
 
 .flg_label {
-    width: 5%;
+    width: 6%;
     font-family: monospace;
+    text-align: end;
 }
 
 .flg_row {
@@ -153,7 +154,7 @@ img {
 }
 
 .flag {
-    width: 5%;
+    width: 6%;
 }
 
 input[type="checkbox" i].flag {
@@ -185,4 +186,16 @@ input[type="checkbox" i].flag {
 
 a.footer_link {
   color: lightblue;
+}
+
+@media only screen and (max-width: 1050px) {
+    .flag {
+        width: 5%;
+    }
+    input[type="checkbox" i].flag {
+        margin-right: 0px;
+    }
+    .flg_row {
+        padding-left: 2px;
+    }
 }
